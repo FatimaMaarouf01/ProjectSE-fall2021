@@ -83,7 +83,7 @@ if(isset($_POST["position"]) && $_POST["position"] != ""){
 
 $mysql->close();
 $connection->close();
-header("Location:../../List of User Accounts/List of Accounts.php");
+// header("Location:../../LanPage/index.php");
 
 
 ?>

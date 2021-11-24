@@ -1,3 +1,48 @@
+<?php
+
+$server = "localhost:3308";
+$username = "root";
+$password = "";
+$dbname = "modernarchitects2";
+
+$connection = new mysqli($server, $username, $password, $dbname);
+
+if($connection->connect_error){
+	die("Failed");
+}
+else{
+	echo "Connected";
+}
+
+
+$query = "SELECT * FROM users";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$results = $stmt->get_result();
+
+echo "connected here";
+
+if(isset($_POST['del'])){
+	
+	$usernames=$_POST['u'];
+	$query = "DELETE  FROM  `users` WHERE UserName ='$usernames'";
+	$rum=mysqli_query($connection,$query);
+	if($rum){
+		echo "done";
+
+	}
+	else{
+		echo "err";
+	}}
+
+?>
+
+<?php
+
+
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,16 +79,28 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr>
-					        <th scope="row" class="scope" >Nahla</th>
-					        <td><a href="#" class="btn btn-primary">View</a></td>
-                            <td><a href="#" class="btn btn-primary">Delete</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" > Amr</th> 
-					        <td><a href="#" class="btn btn-primary">View</a></td>
-                            <td><a href="#" class="btn btn-primary">Delete</a></td>
-					      </tr>
+					    				<?php 
+				while($row = $results->fetch_assoc()){
+				$lol=$row["UserName"];
+			?>
+			<tr>
+
+		<form action="" method="POST">
+				<td  name="username"> <?php echo $row["UserName"];  ?> </td>
+				<td><a href="#" class="btn btn-primary" >View</a></td>
+			 <input type="hidden" name="u" value=<?php echo $row["UserName"];  ?>>
+			<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
+           <!-- <td><a href="#" class="btn btn-primary" name="del">Delete</a></td> -->
+		   </form>
+			</tr>
+	
+<!-- 1- On click javascript replace the ___ by teh actual username taken from the row
+2- once replaced, redirect the browser to the new api (which is replaced) -->
+			<?php
+				}
+			?>
+
+
                           <!--
 					      <tr>
 					        <th scope="row" class="scope" >.org</th>
@@ -90,6 +147,10 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
+  			<script>
+
+</script>
+
 
 	</body>
 </html>
