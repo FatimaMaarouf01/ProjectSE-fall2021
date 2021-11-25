@@ -176,4 +176,3 @@ document.getElementById('r5').innerText
 
 	</body>
 </html>
-
