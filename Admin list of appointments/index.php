@@ -1,3 +1,37 @@
+<?php
+
+include("../connection.php");
+
+$query = "SELECT * FROM `appointments` WHERE Available ='1'";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$results = $stmt->get_result();
+
+// echo "connected here";
+
+if(isset($_POST['del'])){
+	
+	$id=$_POST['u'];
+	$query = "DELETE  FROM  `appointments` WHERE ID ='$id'";
+	$rum=mysqli_query($connection,$query);
+	if($rum){
+		echo "done";
+
+	}
+	else{
+		echo "err";
+	}}
+
+// 	if(isset($_POST['v'])){
+	
+// 	$usernames=$_POST['u'];
+// 	echo "$usernames";
+	
+
+// }
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,6 +47,7 @@
 
 	</head>
 	<body>
+		<td><a href="../AdminPage/index.php"><input type="submit" value="Home Page" class="btn btn-primary"></a></td>
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -35,49 +70,32 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr>
-					        <th scope="row" class="scope" >Monday</th>
-					        <td>10/01/2021</td>
-					        <td>12:00-13:00</td>
-					        <td>Osama</td>
-					        <td><a href="#" class="btn btn-primary">Remove</a></td>
-					      </tr>
-					      <tr>
-							<th scope="row" class="scope" >Monday</th>
-					        <td>10/01/2021</td>
-					        <td>12:00-13:00</td>
-					        <td>Osama</td>
-					        <td><a href="#" class="btn btn-primary">Remove</a></td>
-					      </tr>
-					      <tr>
-							<th scope="row" class="scope" >Monday</th>
-					        <td>10/01/2021</td>
-					        <td>12:00-13:00</td>
-					        <td>Osama</td>
-					        <td><a href="#" class="btn btn-primary">Remove</a></td>
-					      </tr>
-					      <tr>
-							<th scope="row" class="scope" >Monday</th>
-					        <td>10/01/2021</td>
-					        <td>12:00-13:00</td>
-					        <td>Osama</td>
-					        <td><a href="#" class="btn btn-primary">Remove</a></td>
-					      </tr>
-					      <tr>
-							<th scope="row" class="scope" >Monday</th>
-					        <td>10/01/2021</td>
-					        <td>12:00-13:00</td>
-					        <td>Osama</td>
-					        <td><a href="#" class="btn btn-primary">Remove</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope border-bottom-0">Monday</th>
-					        <td class="border-bottom-0">10/01/2021</td>
-					        <td class="border-bottom-0">11:00-12:00</td>
-					        <td class="border-bottom-0">Carla</td>
-					        
-					        <td class="border-bottom-0"><a href="#" class="btn btn-primary">Remove</a></td>
-					      </tr>
+				<?php 
+				while($row = $results->fetch_assoc()){
+				
+			?>
+			<tr>
+
+		
+				<td  name="username" > <?php echo $row["Day"];  ?> </td>
+				<td  name="username" > <?php echo $row["Date"];  ?> </td>
+				<td  name="username" > <?php echo $row["Hours"];  ?> </td>
+				<td  name="username" > <?php echo $row["Name"];  ?> </td>
+				
+				
+				<form action="" method="POST"> -->
+				<input type="hidden" name="u" value=<?php echo $row["ID"];  ?>>
+			
+			<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
+           <!-- <td><a href="#" class="btn btn-primary" name="del">Delete</a></td> -->
+		   </form>
+			</tr>
+	
+					   <?php
+				}
+			?>
+					     
+					      
 					    </tbody>
 					  </table>
 					</div>
@@ -85,6 +103,7 @@
 			</div>
 		</div>
 	</section>
+	
 
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>

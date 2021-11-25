@@ -1,26 +1,13 @@
 <?php
 
-$server = "localhost:3308";
-$username = "root";
-$password = "";
-$dbname = "modernarchitects2";
-
-$connection = new mysqli($server, $username, $password, $dbname);
-
-if($connection->connect_error){
-	die("Failed");
-}
-else{
-	echo "Connected";
-}
-
+include("../connection.php");
 
 $query = "SELECT * FROM users";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $results = $stmt->get_result();
 
-echo "connected here";
+// echo "connected here";
 
 if(isset($_POST['del'])){
 	
@@ -28,12 +15,21 @@ if(isset($_POST['del'])){
 	$query = "DELETE  FROM  `users` WHERE UserName ='$usernames'";
 	$rum=mysqli_query($connection,$query);
 	if($rum){
-		echo "done";
+		// echo "done";
 
 	}
 	else{
 		echo "err";
 	}}
+
+// 	if(isset($_POST['v'])){
+	
+// 	$usernames=$_POST['u'];
+// 	echo "$usernames";
+	
+
+// }
+
 
 ?>
 
@@ -58,6 +54,8 @@ if(isset($_POST['del'])){
 
 	</head>
 	<body>
+		<td><a href="../AdminPage/index.php"><input type="submit" value="Home Page" class="btn btn-primary"></a></td>
+		
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -75,6 +73,7 @@ if(isset($_POST['del'])){
 					      <tr>
 					        <th>Name</th>
 					        <th>View</th>
+							<th>View</th>
 					        <th>Delete</th>
 					      </tr>
 					    </thead>
@@ -85,10 +84,20 @@ if(isset($_POST['del'])){
 			?>
 			<tr>
 
-		<form action="" method="POST">
-				<td  name="username"> <?php echo $row["UserName"];  ?> </td>
-				<td><a href="#" class="btn btn-primary" >View</a></td>
-			 <input type="hidden" name="u" value=<?php echo $row["UserName"];  ?>>
+		
+				<td  name="username" > <?php echo $row["UserName"];  ?> </td>
+				<p id="r1" style="display:none"><?php echo $row["FirstName"];  ?></p>
+				<p id="r2" style="display:none"><?php echo $row["LastName"];  ?></p>
+				<p id="r3" style="display:none"><?php echo $row["Email"];  ?></p>
+				<p id="r4" style="display:none"><?php echo $row["DOB"];  ?></p>
+				<p id="r5" style="display:none"><?php echo $row["Monthly_Salary"];  ?></p>
+				<p id="r6" style="display:none"><?php echo $row["UserName"];  ?></p>
+				<td><input type="submit" id="view" value="view" class="btn btn-primary" name="v" onclick="myFunction2()"></td>
+				
+				<td><div style=" overflow: scroll;"><p id="v" >Click on view to show details</p></div></td>
+				<form action="" method="POST">
+				<input type="hidden" name="u" value=<?php echo $row["UserName"];  ?>>
+			
 			<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
            <!-- <td><a href="#" class="btn btn-primary" name="del">Delete</a></td> -->
 		   </form>
@@ -99,7 +108,7 @@ if(isset($_POST['del'])){
 			<?php
 				}
 			?>
-
+			
 
                           <!--
 					      <tr>
@@ -150,6 +159,19 @@ if(isset($_POST['del'])){
   			<script>
 
 </script>
+<script>
+function myFunction2() {
+var element = document.getElementById('v').innerText=document.getElementById('r1').innerText+' '+document.getElementById('r2').innerText+'\n'+'Email:'+document.getElementById('r3').innerText+'\n'+'DOB: '+
+document.getElementById('r4').innerText+'\n'+'Salary: '+
+document.getElementById('r5').innerText
+;
+// alert(element);
+
+
+
+}
+</script>
+
 
 
 	</body>
