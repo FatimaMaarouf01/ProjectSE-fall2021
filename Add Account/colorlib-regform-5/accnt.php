@@ -73,7 +73,7 @@ if(isset($_POST["position"]) && $_POST["position"] != ""){
 // echo "$name";
 // for($i = 0; $i< 100000000000000000; $i++){
 	// $email = $email . $i;
-	$mysql = $connection->prepare("INSERT INTO users(FirstName,LastName,Email,DOB,user_type_id,Monthly_Salary,UserName,Password) VALUES (?,?,?,?,?,?,?,?)");
+	$mysql = $connection->prepare("INSERT INTO users(first_name,last_name,email,dob,user_type_id,monthly_salary,username,Password) VALUES (?,?,?,?,?,?,?,?)");
 	$mysql->bind_param("ssssiiss", $firstname, $lastname,$email,$DOB, $position,$salary,$username,$password);
 	$mysql->execute();
 

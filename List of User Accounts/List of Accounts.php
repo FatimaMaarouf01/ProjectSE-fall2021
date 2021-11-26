@@ -12,7 +12,7 @@ $results = $stmt->get_result();
 if(isset($_POST['del'])){
 	
 	$usernames=$_POST['u'];
-	$query = "DELETE  FROM  `users` WHERE UserName ='$usernames'";
+	$query = "DELETE  FROM  `users` WHERE username ='$usernames'";
 	$rum=mysqli_query($connection,$query);
 	if($rum){
 		// echo "done";
@@ -80,23 +80,23 @@ if(isset($_POST['del'])){
 					    <tbody>
 					    				<?php 
 				while($row = $results->fetch_assoc()){
-				$lol=$row["UserName"];
+				// $lol=$row["UserName"];
 			?>
 			<tr>
 
 		
-				<td  name="username" > <?php echo $row["UserName"];  ?> </td>
-				<p id="r1" style="display:none"><?php echo $row["FirstName"];  ?></p>
+				<td  name="username" > <?php echo $row["username"];  ?> </td>
+				<!-- <p id="r1" style="display:none"><?php echo $row["FirstName"];  ?></p>
 				<p id="r2" style="display:none"><?php echo $row["LastName"];  ?></p>
 				<p id="r3" style="display:none"><?php echo $row["Email"];  ?></p>
 				<p id="r4" style="display:none"><?php echo $row["DOB"];  ?></p>
 				<p id="r5" style="display:none"><?php echo $row["Monthly_Salary"];  ?></p>
-				<p id="r6" style="display:none"><?php echo $row["UserName"];  ?></p>
+				<p id="r6" style="display:none"><?php echo $row["UserName"];  ?></p> -->
 				<td><input type="submit" id="view" value="view" class="btn btn-primary" name="v" onclick="myFunction2()"></td>
 				
 				<td><div style=" overflow: scroll;"><p id="v" >Click on view to show details</p></div></td>
 				<form action="" method="POST">
-				<input type="hidden" name="u" value=<?php echo $row["UserName"];  ?>>
+				<input type="hidden" name="u" value=<?php echo $row["username"];  ?>>
 			
 			<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
            <!-- <td><a href="#" class="btn btn-primary" name="del">Delete</a></td> -->

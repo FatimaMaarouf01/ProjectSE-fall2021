@@ -2,7 +2,7 @@
 
 include("../connection.php");
 
-$query = "SELECT * FROM `appointments` WHERE Available ='1'";
+$query = "SELECT * FROM `appointments` WHERE availability = '1'";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $results = $stmt->get_result();
@@ -12,7 +12,7 @@ $results = $stmt->get_result();
 if(isset($_POST['del'])){
 	
 	$id=$_POST['u'];
-	$query = "DELETE  FROM  `appointments` WHERE ID ='$id'";
+	$query = "DELETE  FROM  `appointments` WHERE appointment_id ='$id'";
 	$rum=mysqli_query($connection,$query);
 	if($rum){
 		echo "done";
@@ -77,14 +77,14 @@ if(isset($_POST['del'])){
 			<tr>
 
 		
-				<td  name="username" > <?php echo $row["Day"];  ?> </td>
-				<td  name="username" > <?php echo $row["Date"];  ?> </td>
-				<td  name="username" > <?php echo $row["Hours"];  ?> </td>
-				<td  name="username" > <?php echo $row["Name"];  ?> </td>
+				<td  name="username" > <?php echo $row["day"];  ?> </td>
+				<td  name="username" > <?php echo $row["date"];  ?> </td>
+				<td  name="username" > <?php echo $row["hour"];  ?> </td>
+				<td  name="username" > <?php echo $row["name"];  ?> </td>
 				
 				
 				<form action="" method="POST"> -->
-				<input type="hidden" name="u" value=<?php echo $row["ID"];  ?>>
+				<input type="hidden" name="u" value=<?php echo $row["appointment_id"];  ?>>
 			
 			<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
            <!-- <td><a href="#" class="btn btn-primary" name="del">Delete</a></td> -->

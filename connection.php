@@ -3,7 +3,7 @@
 $server = "localhost:3308";
 $username = "root";
 $password = "";
-$dbname = "modernarchitects2";
+$dbname = "modern_architecturedb";
 
 $connection = new mysqli($server, $username, $password, $dbname);
 
