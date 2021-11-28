@@ -21,7 +21,33 @@ if(isset($_POST['del'])){
 	else{
 		echo "err";
 	}}
+	if(isset($_POST['update'])){
+	
+	$salary=$_POST['edit'];
+	$id=$_POST['id'];
+	$query = "UPDATE `users` SET monthly_salary ='$salary' WHERE user_id='$id'";
+	$rum=mysqli_query($connection,$query);
+	if($rum){
+		// echo "done";
 
+	}
+	else{
+		echo "err";
+	}}
+
+	if(isset($_POST['update_email'])){
+	
+	$email=$_POST['edit_email'];
+	$id=$_POST['id2'];
+	$query = "UPDATE `users` SET email ='$email' WHERE user_id='$id'";
+	$rum=mysqli_query($connection,$query);
+	if($rum){
+		// echo "done";
+
+	}
+	else{
+		echo "err";}}
+	// }}
 // 	if(isset($_POST['v'])){
 	
 // 	$usernames=$_POST['u'];
@@ -71,9 +97,17 @@ if(isset($_POST['del'])){
 						<table class="table">
 					    <thead class="thead-primary">
 					      <tr>
-					        <th>Name</th>
-					        <th>View</th>
-							<th>View</th>
+							<th>User Name</th>
+							
+
+					        <th>First Name</th>
+							<th>Last Name</th>
+					        <th>Email</th>
+							<th>DOB</th>
+							<th>Salary</th>
+							<th>Edit Salary</th>
+							<th>Edit Email</th>
+							
 					        <th>Delete</th>
 					      </tr>
 					    </thead>
@@ -84,17 +118,36 @@ if(isset($_POST['del'])){
 			?>
 			<tr>
 
-		
 				<td  name="username" > <?php echo $row["username"];  ?> </td>
-				<!-- <p id="r1" style="display:none"><?php echo $row["FirstName"];  ?></p>
-				<p id="r2" style="display:none"><?php echo $row["LastName"];  ?></p>
-				<p id="r3" style="display:none"><?php echo $row["Email"];  ?></p>
-				<p id="r4" style="display:none"><?php echo $row["DOB"];  ?></p>
-				<p id="r5" style="display:none"><?php echo $row["Monthly_Salary"];  ?></p>
-				<p id="r6" style="display:none"><?php echo $row["UserName"];  ?></p> -->
-				<td><input type="submit" id="view" value="view" class="btn btn-primary" name="v" onclick="myFunction2()"></td>
 				
-				<td><div style=" overflow: scroll;"><p id="v" >Click on view to show details</p></div></td>
+
+		
+				<td  name="fname" > <?php echo $row["first_name"];  ?> </td>
+				<td  name="lname" > <?php echo $row["last_name"];  ?> </td>
+				<td  name="email" > <?php echo $row["email"];  ?> </td>
+		
+				<td  name="dob" > <?php echo $row["dob"];  ?> </td>
+			
+		
+				<td  name="salary" > <?php echo $row["monthly_salary"];  ?> </td>
+				<form action="" method="POST">
+	<input type="hidden" name="id" value=<?php echo $row["user_id"];  ?>>
+				<td><input type="text" name="edit" placeholder="Edit Salary" class="btn btn-primary">
+			</br> Double click to Update
+				<input type="submit" name="update" value="update" class="btn btn-primary">
+			</td>
+			   </form>
+			  <form action="" method="POST">
+	<input type="hidden" name="id2" value=<?php echo $row["user_id"];  ?>>
+				<td><input type="text" name="edit_email" placeholder="Edit Email" class="btn btn-primary">
+			</br> Double click to Update
+				<input type="submit" name="update_email" value="update" class="btn btn-primary">
+			</td>
+			   </form>
+
+				<!-- <td><input type="submit" id="view" value="view" class="btn btn-primary" name="v" onclick="myFunction2()"></td> -->
+				
+				<!-- <td><div style=" overflow: scroll;"><p id="v" >Click on view to show details</p></div></td> -->
 				<form action="" method="POST">
 				<input type="hidden" name="u" value=<?php echo $row["username"];  ?>>
 			
