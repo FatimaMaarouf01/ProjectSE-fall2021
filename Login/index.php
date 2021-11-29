@@ -1,7 +1,66 @@
+<?php
+
+include("../connection.php");
+
+
+if(isset($_POST["login"])){
+
+
+	if(isset($_POST["username"]) && $_POST["username"] != " "){
+			$username = $_POST["username"];
+		}
+		
+		else{
+			echo ("Don't try to mess around brotha ;)");
+		}
+
+		
+	
+    $query = "SELECT username, password, user_type_id FROM users";
+    $stmt = $connection->prepare($query);
+	$stmt->execute();
+	$results = $stmt->get_result();
+
+	while($row = $results->fetch_assoc()){
+
+		$username_table = $row["username"];
+		$password_table = $row["password"];
+		$position_table = $row["user_type_id"];
+
+
+		$username_input = $_POST["username"];
+		$password_input = $_POST["pass"]; //add hash('sha256', ) once db is fixed
+
+		if(($username_input==$username_table) && ($password_input==$password_table)){
+
+			if(($position_table=='1')){
+				header("Location:../AdminPage/index.php");
+			}
+
+			else if(($position_table=='2')){
+				header("Location:../List of Projects/List of Projects.php");
+			}
+
+			else if(($position_table=='3')){
+				header("Location:../List of Projects/List of Projects.php");
+			}	
+			
+		}
+
+		else{
+			
+		}
+		
+	}	
+	
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V18</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -22,48 +81,33 @@
 	
 	<div class="limiter">
 		<div class="container-login100">
+
+
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="POST" >
 					<span class="login100-form-title p-b-43">
 						Login to continue
 					</span>
 					
 					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100"></span>
-						<span class="label-input100" >Email</span>
+					<div  class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input  class="input100" type="text" name="username" method="POST">
+						<span  class="focus-input100"></span>
+						<span id="username_id" class="label-input100" >Username</span>
 					</div>
 					
 					
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="pass" method="POST">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
 
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
-					</div>
-			
-
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="location.href='../AdminPage/index.php'"> 
-							Login
-						</button>
+						<input class="login100-form-btn" type="submit" name = "login" value="Log in">
 					</div>
 					
+
 				</form>
 
 				<div class="login100-more" style="background-image: url('images/Login_img.jpeg');">
@@ -73,7 +117,6 @@
 	</div>
 	
 	
-
 	
 	
 <!--===============================================================================================-->
