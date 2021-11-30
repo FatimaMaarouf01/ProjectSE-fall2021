@@ -1,3 +1,10 @@
+<?php
+
+include("../connection.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -149,12 +156,12 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/1.jpg"
+                  src="assets/modern_imgs/Modern_one.jpeg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Threads</div>
+                <div class="portfolio-caption-heading">Modern One</div>
                 <div class="portfolio-caption-subheading text-muted">
                   Illustration
                 </div>
@@ -176,7 +183,7 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/2.jpg"
+                  src="assets/modern_imgs/Modern_four.jpeg"
                   alt="..."
                 />
               </a>
@@ -203,12 +210,12 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/3.jpg"
+                  src="assets/modern_imgs/Modern_six.jpeg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Finish</div>
+                <div class="portfolio-caption-heading">Modern Six</div>
                 <div class="portfolio-caption-subheading text-muted">
                   Identity
                 </div>
@@ -230,12 +237,12 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/4.jpg"
+                  src="assets/modern_imgs/Modern_seven.jpeg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Lines</div>
+                <div class="portfolio-caption-heading">Modern Seven</div>
                 <div class="portfolio-caption-subheading text-muted">
                   Branding
                 </div>
@@ -257,7 +264,7 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/5.jpg"
+                  src="assets/modern_imgs/Jurdy_SC.jpeg"
                   alt="..."
                 />
               </a>
@@ -380,7 +387,7 @@
         <!-- To make this form functional, sign up at-->
         <!-- https://startbootstrap.com/solution/contact-forms-->
         <!-- to get an API token!-->
-        <form id="contactForm" method="POST">
+        <form id="contactForm" method="POST" action="feedback.php">
           <div class="row align-items-stretch mb-5">
             <div class="col-md-6">
               <div class="form-group">
@@ -391,52 +398,21 @@
                   type="text"
                   placeholder="Your Name *"
                   data-sb-validations="required"
+                  name="name"
                 />
                 <div class="invalid-feedback" data-sb-feedback="name:required">
                   A name is required.
                 </div>
               </div>
               <div class="form-group">
-                <!-- Email address input-->
-                <!-- <input
-                  class="form-control"
-                  id="email"
-                  type="email"
-                  placeholder="Your Email *"
-                  data-sb-validations="required,email"
-                />
-                <div class="invalid-feedback" data-sb-feedback="email:required">
-                  An email is required.
-                </div>
-                <div class="invalid-feedback" data-sb-feedback="email:email">
-                  Email is not valid.
-                </div>
-              </div>
-              <div class="form-group mb-md-0"> -->
-
-                <!-- Phone number input-->
-                
-                <!-- <input
-                  class="form-control"
-                  id="phone"
-                  type="tel"
-                  placeholder="Your Phone *"
-                  data-sb-validations="required"
-                />
-                <div class="invalid-feedback" data-sb-feedback="phone:required">
-                  A phone number is required.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group form-group-textarea mb-md-0"> -->
-                
+                               
                 <!-- Message input-->
                 <textarea
                   class="form-control"
                   id="message"
                   placeholder="Your Message *"
                   data-sb-validations="required"
+                  name="message"
                 ></textarea>
                 <div
                   class="invalid-feedback"
@@ -472,8 +448,8 @@
           </div>
           <!-- Submit Button-->
           <div class="text-center">
-            <button
-              class="btn btn-primary btn-xl text-uppercase disabled"
+            <button onclick="alertuser()"
+              class="btn btn-primary btn-xl text-uppercase"
               id="submitButton"
               type="submit"
             >
@@ -491,21 +467,17 @@
             Copyright &copy; Your Website 2021
           </div>
           <div class="col-lg-4 my-3 my-lg-0">
-            <a class="btn btn-dark btn-social mx-2" href="#!"
+            <!-- <a class="btn btn-dark btn-social mx-2" href="#!"
               ><i class="fab fa-twitter"></i
-            ></a>
-            <a class="btn btn-dark btn-social mx-2" href="#!"
+            ></a> -->
+            <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.facebook.com/pages/category/Company/Modern-Architecture-Company-Engineer-MamdouhAAmer-1501929776731842/"
               ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a class="btn btn-dark btn-social mx-2" href="#!"
-              ><i class="fab fa-linkedin-in"></i
             ></a>
           </div>
           <div class="col-lg-4 text-lg-end">
-            <a class="link-dark text-decoration-none me-3" href="#!"
-              >Privacy Policy</a
+            <a class="link-dark text-decoration-none me-3" id="number1" onclick="CopyPhone()">+961 25 555586 </a
             >
-            <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+            <a class="link-dark text-decoration-none" id="email1" onclick="CopyEmail()" > modern_architecture2000@yahoo.com</a> 
           </div>
         </div>
       </div>
@@ -535,7 +507,7 @@
                   </p>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/1.jpg"
+                    src="assets/modern_imgs/Modern_one.jpeg"
                     alt="..."
                   />
                   <p>
@@ -865,6 +837,12 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function alertuser(){
+        window.alert("Your form has been successfully submitted!");
+      }
+    </script>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
