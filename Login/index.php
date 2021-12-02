@@ -33,15 +33,15 @@ if(isset($_POST["login"])){
 
 		if(($username_input==$username_table) && ($password_input==$password_table)){
 
-			if(($position_table=='1')){
+			if(($position_table==1)){
 				header("Location:../AdminPage/index.php");
 			}
 
-			else if(($position_table=='2')){
+			else if(($position_table==2)){
 				header("Location:../List of Projects/List of Projects.php");
 			}
 
-			else if(($position_table=='3')){
+			else if(($position_table==3)){
 				header("Location:../List of Projects/List of Projects.php");
 			}	
 			

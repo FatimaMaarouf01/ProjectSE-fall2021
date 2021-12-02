@@ -389,7 +389,7 @@ include("../connection.php");
         <!-- to get an API token!-->
         <form id="contactForm" method="POST" action="feedback.php">
           <div class="row align-items-stretch mb-5">
-            <div class="col-md-6">
+            <div class="col-md-6" id="feedback_input">
               <div class="form-group">
                 <!-- Name input-->
                 <input style="width:100%"
@@ -397,10 +397,10 @@ include("../connection.php");
                   id="name"
                   type="text"
                   placeholder="Your Name *"
-                  data-sb-validations="required"
+
                   name="name"
                 />
-                <div class="invalid-feedback" data-sb-feedback="name:required">
+                <div class="invalid-feedback" data-sb-feedback="name">
                   A name is required.
                 </div>
               </div>
@@ -411,12 +411,11 @@ include("../connection.php");
                   class="form-control"
                   id="message"
                   placeholder="Your Message *"
-                  data-sb-validations="required"
                   name="message"
                 ></textarea>
                 <div
                   class="invalid-feedback"
-                  data-sb-feedback="message:required"
+                  data-sb-feedback="message"
                 >
                   A message is required.
                 </div>
@@ -464,7 +463,7 @@ include("../connection.php");
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-4 text-lg-start">
-            Copyright &copy; Your Website 2021
+            Copyright &copy; ModernArchitecture 2021
           </div>
           <div class="col-lg-4 my-3 my-lg-0">
             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"
@@ -840,7 +839,13 @@ include("../connection.php");
 
     <script>
       function alertuser(){
-        window.alert("Your form has been successfully submitted!");
+         if(document.getElementById("message").value==""){
+            window.alert("Please enter a valid feedback");
+         }
+         else if(document.getElementById("message").value!=""){
+            window.alert("Your Feedback was submitted successfully!");
+         }
+        
       }
     </script>
     <!-- Bootstrap core JS-->

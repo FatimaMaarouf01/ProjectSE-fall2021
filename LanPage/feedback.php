@@ -5,8 +5,6 @@ include("../connection.php");
 
 if(isset($_POST["message"]) && $_POST["message"] != ""){
 	$message = $_POST["message"];
-}else{
-	die("Don't try to mess around bro ;)");
 }
  
     $name=$_POST["name"];
