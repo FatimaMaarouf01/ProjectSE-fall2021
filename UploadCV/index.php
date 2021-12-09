@@ -24,6 +24,9 @@
 
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
+
+    <link rel="icon" type="image/x-icon" href="../LanPage/assets/logo-small.jpeg" />
+
 </head>
 
 <body>
@@ -34,20 +37,20 @@
                     <h2 class="title">Apply Now!</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" action="upload.php" enctype="multipart/form-data">
                         <div class="form-row m-b-55">
                             <div class="name">Name</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="first_name">
+                                            <input class="input--style-5" type="text" name="first_name" Required>
                                             <label class="label--desc">first name</label>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="last_name">
+                                            <input class="input--style-5" type="text" name="last_name" Required>
                                             <label class="label--desc">last name</label>
                                         </div>
                                     </div>
@@ -59,7 +62,7 @@
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="email" name="email">
+                                    <input class="input--style-5" type="email" name="email" Required>
                                 </div>
                             </div>
                         </div>
@@ -69,12 +72,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
-                                            <option disabled="disabled" selected="selected">Choose option</option>
-                                            <option>Subject 1</option>
-                                            <option>Subject 2</option>
-                                            <option>Subject 3</option>
-                                        </select>
+                                        <input type="File" name="file" accept="application/pdf" Required>
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
@@ -84,17 +82,17 @@
                             <label class="label label--block">Are you Applying for Employment or Internship?</label>
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Employment
-                                    <input type="radio" checked="checked" name="exist">
+                                    <input type="radio" name="position" value="Employment" Required>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">Internship
-                                    <input type="radio" name="exist">
+                                    <input type="radio" name="position" value="Internship" Required>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Submit</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit"  name="submit">Submit</button>
                         </div>
                     </form>
                 </div>

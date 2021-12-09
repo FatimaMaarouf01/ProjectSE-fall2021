@@ -1,3 +1,27 @@
+<?php
+
+include("../connection.php");
+
+$query = "SELECT * FROM `feedbacks`";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$results = $stmt->get_result();
+
+if(isset($_POST['del'])){
+	
+	$id=$_POST['u'];
+	$query = "DELETE  FROM  `feedbacks` WHERE `feedbacks`.`feedback_id` ='$id'";
+	$rum=mysqli_query($connection,$query);
+	if($rum){
+		//echo "done";
+
+	}
+	else{
+		echo "error in deleting appointment";
+	}
+}
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,8 +35,16 @@
 	
 	<link rel="stylesheet" href="css/style.css">
 
+	<link rel="icon" type="image/x-icon" href="../LanPage/assets/logo-small.jpeg" />
+
+	<style>
+		body{
+			background-color: #212529;
+		}
+	</style>
 	</head>
 	<body>
+		<a class="btn btn-primary" href="../AdminPage/index.php" target="_self"> Home Page </a>  
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -28,55 +60,21 @@
 					    <thead class="thead-primary">
 					      <tr>
 					        <th>Name</th>
-					        <th>View</th>
+					        <th>Feedback</th>
 					        <th>Delete</th>
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr>
-					        <th scope="row" class="scope" >Amr</th>
-					        <td><a href="#" class="btn btn-primary">View</a></td>
-                            <td><a href="#" class="btn btn-primary">Delete</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" >Nahla</th>
-					        <td><a href="#" class="btn btn-primary">View</a></td>
-                            <td><a href="#" class="btn btn-primary">Delete</a></td>
-					      </tr>
-                          <!--
-					      <tr>
-					        <th scope="row" class="scope" >.org</th>
-					        <td>1 Year</td>
-					        <td>$65.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" >.biz</th>
-					        <td>1 Year</td>
-					        <td>$60.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" >.info</th>
-					        <td>1 Year</td>
-					        <td>$50.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope border-bottom-0">.me</th>
-					        <td class="border-bottom-0">1 Year</td>
-					        <td class="border-bottom-0">$45.00</td>
-					        <td class="border-bottom-0">$5.00</td>
-					        <td class="border-bottom-0">$5.00</td>
-					        <td class="border-bottom-0"><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-                        -->
+					      <?php while($row = $results->fetch_assoc()){?>
+								<tr>
+									<td  name="username" > <?php echo $row["name"];  ?> </td>
+									<td  name="username" > <?php echo $row["text"];  ?> </td>
+									<form action="" method="POST">
+										<input type="hidden" name="u" value=<?php echo $row["feedback_id"];  ?>>
+										<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
+									</form>
+								</tr>
+								<?php } ?>
 					    </tbody>
 					  </table>
 					</div>

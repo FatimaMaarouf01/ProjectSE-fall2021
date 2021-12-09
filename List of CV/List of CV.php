@@ -1,3 +1,17 @@
+<?php
+include("../connection.php");
+
+
+
+$query = "SELECT * FROM cvs";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$results = $stmt->get_result();
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,8 +25,12 @@
 	
 	<link rel="stylesheet" href="css/style.css">
 
+	<link rel="icon" type="image/x-icon" href="../LanPage/assets/logo-small.jpeg" />
+
+
 	</head>
 	<body>
+		<a class="btn btn-primary" href="../AdminPage/index.php" target="_self"> Home Page </a>  
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -27,62 +45,41 @@
 						<table class="table">
 					    <thead class="thead-primary">
 					      <tr>
+							  <!-- <th></th> -->
 					        <th>Applicant's Name</th>
 					        <th>Type</th>
-                            <th>View</th>
-					        <th>Print</th>
+                            <th>View / Print</th>
 					        <th>Delete</th>
 					      </tr>
 					    </thead>
 					    <tbody>
+							<?php 
+				while($row = $results->fetch_assoc()){
+						?>
 					      <tr>
-					        <th scope="row" class="scope" >Mohamad</th>
-					        <td>Graduate</td>
-                            <td><a href="#" class="btn btn-primary">View</a></td>
-					        <td><a href="#" class="btn btn-primary">Print</a></td>
-                            <td><a href="#" class="btn btn-primary">Delete</a></td>
+							  <!-- <td name="cv_id" type="hidden" value="<?php echo $row["cv_id"];  ?> "></td> -->
+					        <td  name="title" > <?php echo $row["first_name"]." ".$row["last_name"];  ?> </td>
+							<td  name="type" > <?php echo $row["type"];  ?> </td>
+					        <td><a href="CVs/<?php echo $row["cv_attachment"];  ?> " target= "_blank" class="btn btn-primary">View CV</a></td>
+					        <td><a href="delete.php?cv_id=<?php echo $row['cv_id']; ?>" class="btn btn-primary">Delete Cv</a></td> 
+                            
 					      </tr>
-					      <tr>
-                            <th scope="row" class="scope" >Fatima</th>
-					        <td>Student</td>
-                            <td><a href="#" class="btn btn-primary">View</a></td>
-					        <td><a href="#" class="btn btn-primary">Print</a></td>
-                            <td><a href="#" class="btn btn-primary">Delete</a></td>
-					      </tr>
-                          <!--
-					      <tr>
-					        <th scope="row" class="scope" >.org</th>
-					        <td>1 Year</td>
-					        <td>$65.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" >.biz</th>
-					        <td>1 Year</td>
-					        <td>$60.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" >.info</th>
-					        <td>1 Year</td>
-					        <td>$50.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope border-bottom-0">.me</th>
-					        <td class="border-bottom-0">1 Year</td>
-					        <td class="border-bottom-0">$45.00</td>
-					        <td class="border-bottom-0">$5.00</td>
-					        <td class="border-bottom-0">$5.00</td>
-					        <td class="border-bottom-0"><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-                        -->
+						  <?php
+				}
+			?>
+			<!--<script>
+				function printIt(CVs/document.getElementById(i).value) {
+  var win = window.open();
+  self.focus();
+  win.document.open();
+  win.document.write('<'+'html'+'><'+'body'+'>');
+  win.document.write(CVs/document.getElementById(i).value);
+  win.document.write('<'+'/body'+'><'+'/html'+'>');
+  win.document.close();
+  win.print();
+  win.close();
+}
+			</script>-->
 					    </tbody>
 					  </table>
 					</div>
@@ -98,4 +95,3 @@
 
 	</body>
 </html>
-

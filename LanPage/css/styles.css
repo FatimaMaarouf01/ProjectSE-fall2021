@@ -10,6 +10,12 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+div#feedback_input.col-md-6{
+  width:50%;
+  margin: auto;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -11798,8 +11804,8 @@ header.masthead {
   padding-top: 10.5rem;
   padding-bottom: 6rem;
   text-align: center;
-  color: #fff;
-  background-image: url("../assets/img/new-bg.jpg");
+  color: #ffb800;
+  background-image: url("../assets/Main_img.jpeg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -12202,7 +12208,4 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 #logo {
   width: 100%;
-}
-
-a.navbar-brand {
 }

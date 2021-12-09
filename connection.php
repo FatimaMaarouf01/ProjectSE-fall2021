@@ -1,6 +1,6 @@
 <?php
 
-$server = "localhost:3308";
+$server = "localhost:3308"; //could be 3306 depending on the port you use
 $username = "root";
 $password = "";
 $dbname = "modern_architecturedb";

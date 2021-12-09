@@ -59,18 +59,18 @@ include("../connection.php");
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#services">Services</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#portfolio">Catalog</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="../UploadCV/index.php" target="_blank">Apply Now!</a></li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Feedback</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../UserListofappointments/index.php">Available Appointments</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="../UploadCV/index.php" target="_blank">Apply Now!</a></li>
             <li class="nav-item">
               <a class="nav-link" href="../Login/index.php" target="_blank">Log In</a>
             </li>
@@ -161,10 +161,7 @@ include("../connection.php");
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Modern One</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Illustration
-                </div>
+                <div class="portfolio-caption-heading">Modern I</div> 
               </div>
             </div>
           </div>
@@ -183,15 +180,12 @@ include("../connection.php");
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/modern_imgs/Modern_four.jpeg"
+                  src="assets/modern_imgs/Modern_two.jpg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Explore</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Graphic Design
-                </div>
+                <div class="portfolio-caption-heading">Modern II</div>
               </div>
             </div>
           </div>
@@ -210,15 +204,12 @@ include("../connection.php");
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/modern_imgs/Modern_six.jpeg"
+                  src="assets/modern_imgs/Modern_four.jpeg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Modern Six</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Identity
-                </div>
+                <div class="portfolio-caption-heading">Modern IV</div>
               </div>
             </div>
           </div>
@@ -237,15 +228,12 @@ include("../connection.php");
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/modern_imgs/Modern_seven.jpeg"
+                  src="assets/modern_imgs/Modern_six.jpeg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Modern Seven</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Branding
-                </div>
+                <div class="portfolio-caption-heading">Modern VI</div>
               </div>
             </div>
           </div>
@@ -264,15 +252,12 @@ include("../connection.php");
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/modern_imgs/Jurdy_SC.jpeg"
+                  src="assets/modern_imgs/Modern_seven.jpeg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Southwest</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Website Design
-                </div>
+                <div class="portfolio-caption-heading">Modern VII</div>
               </div>
             </div>
           </div>
@@ -291,15 +276,12 @@ include("../connection.php");
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/6.jpg"
+                  src="assets/modern_imgs/Jurdy_SC.jpeg"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Window</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Photography
-                </div>
+                <div class="portfolio-caption-heading">Al Jurdy Shopping Center</div>
               </div>
             </div>
           </div>
@@ -312,7 +294,7 @@ include("../connection.php");
         <div class="text-center">
           <h2 class="section-heading text-uppercase">About</h2>
           <h3 class="section-subheading text-muted">
-            THE COMPANY TIMELINE
+            THE COMPANY'S TIMELINE
           </h3>
         </div>
         <ul class="timeline">
@@ -320,7 +302,7 @@ include("../connection.php");
             <div class="timeline-image">
               <img
                 class="rounded-circle img-fluid"
-                src="assets/img/about/1.jpg"
+                src="assets/logo-small.jpeg"
                 alt="..."
               />
             </div>
@@ -347,18 +329,19 @@ include("../connection.php");
             </div>
             <div class="timeline-panel">
               <div class="timeline-heading">
-                <h4>July 2020</h4>
+                <h4>December 2021</h4>
                 <h4 class="subheading">Present</h4>
               </div>
               <div class="timeline-body">
                 <p class="text-muted">
-                  Modern Architecture has not lost its 
+                  20 years later, Modern Architecture still has the same mission in providing a blend of the past and future while 
+                  creating the most luxurious designs.                  
                 </p>
               </div>
             </div>
           </li>
           <li class="timeline-inverted">
-            <div class="timeline-image">
+            <a href="../UploadCV/index.php" target="_blank"><div class="timeline-image">
               <h4>
                 Be Part
                 <br />
@@ -366,7 +349,7 @@ include("../connection.php");
                 <br />
                 Team!
               </h4>
-            </div>
+            </div></a>
           </li>
         </ul>
       </div>
@@ -396,7 +379,7 @@ include("../connection.php");
                   class="form-control"
                   id="name"
                   type="text"
-                  placeholder="Your Name *"
+                  placeholder="Your Name"
 
                   name="name"
                 />
@@ -474,9 +457,9 @@ include("../connection.php");
             ></a>
           </div>
           <div class="col-lg-4 text-lg-end">
-            <a class="link-dark text-decoration-none me-3" id="number1" onclick="CopyPhone()">+961 25 555586 </a
-            >
-            <a class="link-dark text-decoration-none" id="email1" onclick="CopyEmail()" > modern_architecture2000@yahoo.com</a> 
+            <span class="link-dark text-decoration-none me-3" id="number1" onclick="CopyToClipboard("number1")">+961 25 555586 </span>
+
+            <a class="link-dark text-decoration-none" id="email1" onclick="CopyToClipboard(email)" > modern_architecture2000@yahoo.com</a> 
           </div>
         </div>
       </div>
@@ -500,23 +483,17 @@ include("../connection.php");
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
+                  <h2 class="text-uppercase">Modern I</h2>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/modern_imgs/Modern_one.jpeg"
+                    src="assets/modern_imgs/Modern_one.1.jpeg"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Luxurios apartments in Aley-Ayn Jdidi that are filled with multiple high quality specifications.
+                    Modern one apartments come with 3 bedrooms and 3 bathrooms, totaling to 152 squared meters of space.  
                   </p>
-                  <ul class="list-inline">
+                 <!-- <ul class="list-inline">
                     <li>
                       <strong>Client:</strong>
                       Threads
@@ -525,7 +502,7 @@ include("../connection.php");
                       <strong>Category:</strong>
                       Illustration
                     </li>
-                  </ul>
+                  </ul> -->
                   <button
                     class="btn btn-primary btn-xl text-uppercase"
                     data-bs-dismiss="modal"
@@ -559,32 +536,16 @@ include("../connection.php");
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
+                  <h2 class="text-uppercase">Modern II</h2>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/2.jpg"
+                    src="assets/modern_imgs/Modern_two.1.jpg"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Located in Aley, Modern II projects consist of 5 floors. Each floor is designed to fit one large apartment with 3 
+                    bedrooms and 3 bathrooms, totaling up to 170 squared meter of luxury space. The 
                   </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Client:</strong>
-                      Explore
-                    </li>
-                    <li>
-                      <strong>Category:</strong>
-                      Graphic Design
-                    </li>
-                  </ul>
                   <button
                     class="btn btn-primary btn-xl text-uppercase"
                     data-bs-dismiss="modal"
@@ -618,32 +579,17 @@ include("../connection.php");
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
+                  <h2 class="text-uppercase">Modern IV</h2>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/3.jpg"
+                    src="assets/Modern_imgs/Modern_four.1.jpeg"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Located in Aytet, Aley, Modern IV apartments come with a fascinating view at the Mediterranian Sea.
+                    The apartments have a beautiful design made to fit high luxury standards, they come with 2 bedrooms and 
+                    2 bathrooms, totaling up to 125 squared meters of space.
                   </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Client:</strong>
-                      Finish
-                    </li>
-                    <li>
-                      <strong>Category:</strong>
-                      Identity
-                    </li>
-                  </ul>
                   <button
                     class="btn btn-primary btn-xl text-uppercase"
                     data-bs-dismiss="modal"
@@ -677,32 +623,19 @@ include("../connection.php");
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
+                  <h2 class="text-uppercase">Modern VI</h2>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/4.jpg"
+                    src="assets/Modern_imgs/Modern_six.jpeg"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Modern VI apartments are located in Shwayfat Alkoby. 
+                    All apartments are designed from a modern perspective 
+                    to fit your specifications. They come with 2 bedrooms and
+                    2 bathrooms, adding up to 125 squared meters of space. All
+                    apartments have a spectacular view of the Mediterranian.
                   </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Client:</strong>
-                      Lines
-                    </li>
-                    <li>
-                      <strong>Category:</strong>
-                      Branding
-                    </li>
-                  </ul>
                   <button
                     class="btn btn-primary btn-xl text-uppercase"
                     data-bs-dismiss="modal"
@@ -736,32 +669,17 @@ include("../connection.php");
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
+                  <h2 class="text-uppercase">Modern VII</h2>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/5.jpg"
+                    src="assets/Modern_imgs/Modern_seven.1.jpeg"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Located in Platoon, Aley, Modern VII are designed to fit the highest 
+                    luxury standards. Apartments come with 2 bedrooms and 2 bathrooms which totals 
+                    up to 125 sqared meters.
                   </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Client:</strong>
-                      Southwest
-                    </li>
-                    <li>
-                      <strong>Category:</strong>
-                      Website Design
-                    </li>
-                  </ul>
                   <button
                     class="btn btn-primary btn-xl text-uppercase"
                     data-bs-dismiss="modal"
@@ -795,32 +713,17 @@ include("../connection.php");
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
+                  <h2 class="text-uppercase">Al Jurdy Shopping Center</h2>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/6.jpg"
+                    src="assets/Modern_imgs/Jurdy_SC.1.jpeg"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Al Jurdy Shopping Center is located in Bkheshtay, Aley. The 
+                    design was inspired from stacking planes on top each other to create a 
+                    4 floors that look lie they're disconnected and connected at the same time.
                   </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Client:</strong>
-                      Window
-                    </li>
-                    <li>
-                      <strong>Category:</strong>
-                      Photography
-                    </li>
-                  </ul>
                   <button
                     class="btn btn-primary btn-xl text-uppercase"
                     data-bs-dismiss="modal"

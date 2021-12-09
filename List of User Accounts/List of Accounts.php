@@ -7,8 +7,6 @@ $stmt = $connection->prepare($query);
 $stmt->execute();
 $results = $stmt->get_result();
 
-// echo "connected here";
-
 if(isset($_POST['del'])){
 	
 	$usernames=$_POST['u'];
@@ -19,7 +17,7 @@ if(isset($_POST['del'])){
 
 	}
 	else{
-		echo "err";
+		echo "error";
 	}}
 	if(isset($_POST['update'])){
 	
@@ -32,7 +30,7 @@ if(isset($_POST['del'])){
 
 	}
 	else{
-		echo "err";
+		echo "error";
 	}}
 
 	if(isset($_POST['update_email'])){
@@ -46,25 +44,49 @@ if(isset($_POST['del'])){
 
 	}
 	else{
-		echo "err";}}
-	// }}
-// 	if(isset($_POST['v'])){
-	
-// 	$usernames=$_POST['u'];
-// 	echo "$usernames";
+		echo "error";}}
 	
 
-// }
+		
+	if(isset($_POST['update_pos'])){
+	$type_user_id=0;
+	$pos=$_POST['edit_pos'];
+	$id=$_POST['id3'];
+	if(($pos=="Auth Employee")&& $pos!="" ){
+		$type_user_id=4;
+	}
+   if($pos=="Employee"&& $pos!=""){
+		$type_user_id=2;
+	}
+   if($pos=="Intern"&& $pos!=""){
+		$type_user_id=4;
+	}
+	$query = "UPDATE `users` SET user_type_id ='$type_user_id' WHERE user_id='$id'";
+	$rum=mysqli_query($connection,$query);
+	if($rum){
+		// echo "done";
+	}
+	else{
+		echo "error";
+	}
+}
+	
+	if(isset($_POST['update_pass'])){
+	
+	$pass= hash("sha256", $_POST["edit_pass"]);
+	$id=$_POST['id4'];
+	$query = "UPDATE `users` SET password ='$pass' WHERE user_id='$id'";
+	$rum=mysqli_query($connection,$query);
+	if($rum){
+		// echo "done";
 
-
+	}
+	else{
+		echo "erroror";
+	}
+}
 ?>
 
-<?php
-
-
-
-
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -77,10 +99,19 @@ if(isset($_POST['del'])){
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon" type="image/x-icon" href="../LanPage/assets/logo-small.jpeg" />
+
+	<style>
+		body{
+			background-color: #212529;
+		}
+	</style>
+
 
 	</head>
 	<body>
-		<td><a href="../AdminPage/index.php"><input type="submit" value="Home Page" class="btn btn-primary"></a></td>
+
+	<td><a href="../AdminPage/index.php"><input type="submit" value="Home Page" class="btn btn-primary"></a></td>
 		
 	<section class="ftco-section">
 		<div class="container">
@@ -92,140 +123,101 @@ if(isset($_POST['del'])){
 			<div class="row">
 				<div class="col-md-12">
 					<h4 class="text-center mb-4">List of User Accounts</h4>
-                    <a href="#" class="btn btn-primary"  onclick="location.href='../Add Account/colorlib-regform-5/index.php'">Add New User Account</a><br><br>
+                    <a href="#" class="btn btn-primary"  onclick="location.href='../Add Account/index.php'">Add User</a><br><br>
 					<div class="table-wrap">
 						<table class="table">
 					    <thead class="thead-primary">
 					      <tr>
-							<th>User Name</th>
-							
-
+							<th>Username</th>
 					        <th>First Name</th>
 							<th>Last Name</th>
+							<th>Position</th>
 					        <th>Email</th>
-							<th>DOB</th>
+							<th>Date of Birth</th>
+							<th>Phone</th>
 							<th>Salary</th>
 							<th>Edit Salary</th>
 							<th>Edit Email</th>
-							
+							<th style="width:600px">Edit Position</th>
+							<th>Edit Password</th>
 					        <th>Delete</th>
 					      </tr>
 					    </thead>
 					    <tbody>
-					    				<?php 
-				while($row = $results->fetch_assoc()){
-				// $lol=$row["UserName"];
-			?>
-			<tr>
-
-				<td  name="username" > <?php echo $row["username"];  ?> </td>
-				
-
-		
-				<td  name="fname" > <?php echo $row["first_name"];  ?> </td>
-				<td  name="lname" > <?php echo $row["last_name"];  ?> </td>
-				<td  name="email" > <?php echo $row["email"];  ?> </td>
-		
-				<td  name="dob" > <?php echo $row["dob"];  ?> </td>
-			
-		
-				<td  name="salary" > <?php echo $row["monthly_salary"];  ?> </td>
-				<form action="" method="POST">
-	<input type="hidden" name="id" value=<?php echo $row["user_id"];  ?>>
-				<td><input type="text" name="edit" placeholder="Edit Salary" class="btn btn-primary">
-			</br> Double click to Update
-				<input type="submit" name="update" value="update" class="btn btn-primary">
-			</td>
-			   </form>
-			  <form action="" method="POST">
-	<input type="hidden" name="id2" value=<?php echo $row["user_id"];  ?>>
-				<td><input type="text" name="edit_email" placeholder="Edit Email" class="btn btn-primary">
-			</br> Double click to Update
-				<input type="submit" name="update_email" value="update" class="btn btn-primary">
-			</td>
-			   </form>
-
-				<!-- <td><input type="submit" id="view" value="view" class="btn btn-primary" name="v" onclick="myFunction2()"></td> -->
-				
-				<!-- <td><div style=" overflow: scroll;"><p id="v" >Click on view to show details</p></div></td> -->
-				<form action="" method="POST">
-				<input type="hidden" name="u" value=<?php echo $row["username"];  ?>>
-			
-			<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
-           <!-- <td><a href="#" class="btn btn-primary" name="del">Delete</a></td> -->
-		   </form>
-			</tr>
-	
-<!-- 1- On click javascript replace the ___ by teh actual username taken from the row
-2- once replaced, redirect the browser to the new api (which is replaced) -->
-			<?php
-				}
-			?>
-			
-
-                          <!--
-					      <tr>
-					        <th scope="row" class="scope" >.org</th>
-					        <td>1 Year</td>
-					        <td>$65.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" >.biz</th>
-					        <td>1 Year</td>
-					        <td>$60.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope" >.info</th>
-					        <td>1 Year</td>
-					        <td>$50.00</td>
-					        <td>$5.00</td>
-					        <td>$5.00</td>
-					        <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-					      <tr>
-					        <th scope="row" class="scope border-bottom-0">.me</th>
-					        <td class="border-bottom-0">1 Year</td>
-					        <td class="border-bottom-0">$45.00</td>
-					        <td class="border-bottom-0">$5.00</td>
-					        <td class="border-bottom-0">$5.00</td>
-					        <td class="border-bottom-0"><a href="#" class="btn btn-primary">Sign Up</a></td>
-					      </tr>
-                        -->
+					    	<?php while($row = $results->fetch_assoc()){?>
+							<tr>
+								<td  style="white-space:nowrap" name="username" > <?php echo $row["username"];  ?> </td>		
+								<td style="white-space:nowrap"  name="fname" > <?php echo $row["first_name"];  ?> </td>
+								<td  style="white-space:nowrap" name="lname" > <?php echo $row["last_name"];  ?> </td>
+								<td  name="position" > <?php if( $row["user_type_id"]==1){
+																	echo "Manger";
+																}
+															 if( $row["user_type_id"]==2){
+																	echo"Employee";
+																} 
+															 if( $row["user_type_id"]==3){
+																	echo"Intern";}
+															 if( $row["user_type_id"]==4){
+																	echo"Authorized Employee";
+																}  ?> </td>
+								
+								<td  name="email" > <?php echo $row["email"];  ?> </td>
+								<td  name="dob" style="white-space:nowrap"> <?php echo $row["dob"];  ?> </td>
+								<td  name="phone" style="white-space:nowrap"> <?php echo $row["phone"];  ?> </td>
+								<td  name="salary" > <?php echo $row["monthly_salary"];  ?> </td>
+								<form action="" method="POST">
+									<input type="hidden" name="id" value=<?php echo $row["user_id"];  ?>>
+									<td><input type="number" name="edit" placeholder="Edit Salary" required>
+									</br> 
+									<input type="submit" name="update" value="update" class="btn btn-primary"></td>
+			   					</form>
+			  					<form action="" method="POST">
+									<input type="hidden" name="id2" value=<?php echo $row["user_id"];  ?>>
+									<td><input type="email" name="edit_email" placeholder="Edit Email" required>
+									</br> 
+									<input type="submit" name="update_email" value="update" class="btn btn-primary"></td>
+								</form>
+			   			  		<form action="" method="POST">
+									<input type="hidden" name="id3" value=<?php echo $row["user_id"];  ?>>
+									<td style="white-space:nowrap">
+									<input style="white-space:nowrap" type="radio"  name="edit_pos" value="Auth Employee">Authurized Employee </br>
+									<input type="radio" name="edit_pos" value="Employee">  Employee</br>
+									<input type="radio" name="edit_pos" value="intern"> Intern
+									</br> </br>
+									<input type="submit" name="update_pos" value="update" class="btn btn-primary"></td>
+								</form>
+								<form action="" method="POST">
+									<input type="hidden" name="id4" value=<?php echo $row["user_id"];  ?>>
+									<td><input type="text" name="edit_pass" placeholder="Enter New Password" required>
+									</br> </br> 
+									<input type="submit" name="update_pass" value="update" class="btn btn-primary"></td>
+			   					</form>
+								<form action="" method="POST">
+									<input type="hidden" name="u" value=<?php echo $row["username"];  ?>>
+									<td><input type="submit" name="del" value="remove" class="btn btn-primary"></td>
+							   </form>
+							</tr>
+							<?php } ?>
 					    </tbody>
-					  </table>
+					  	</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-  			<script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 
-</script>
 <script>
 function myFunction2() {
 var element = document.getElementById('v').innerText=document.getElementById('r1').innerText+' '+document.getElementById('r2').innerText+'\n'+'Email:'+document.getElementById('r3').innerText+'\n'+'DOB: '+
 document.getElementById('r4').innerText+'\n'+'Salary: '+
-document.getElementById('r5').innerText
-;
-// alert(element);
-
-
-
+document.getElementById('r5').innerText;
 }
 </script>
-
-
 
 	</body>
 </html>

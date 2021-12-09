@@ -1,8 +1,8 @@
 <?php
 
 include("../connection.php");
-
-$query = "SELECT appointment_id, day, date, hour  FROM appointments WHERE availability = 0";
+$today_date = date("Y-m-d");
+$query = "SELECT appointment_id, day, date, hour  FROM appointments WHERE availability = 0 AND date>'$today_date';";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $results = $stmt->get_result();
@@ -13,11 +13,14 @@ if(isset($_POST["book_id"])){
 
 	if(isset($_POST["name"]) && $_POST["name"] != " "){
 			$client_name = $_POST["name"];
+			
 		}
 		
 		else{
-			echo ("Please Enter your name");
+			die ("Please Enter your name");
 		}
+
+	
 	
 	$id=$_POST["app_id"];
     $query = "UPDATE `appointments` SET `availability` = '1' WHERE `appointments`.`appointment_id` = '$id'";
@@ -34,11 +37,34 @@ if(isset($_POST["book_id"])){
     $run1=mysqli_query($connection,$query1);
 
 	if($run1){
+
+	
 		
 	}
 	else{
 		echo "error";
 	}
+
+		$query2 = "SELECT `first_name`, `email` FROM `users` WHERE `user_type_id`=1 OR `user_type_id`=4";
+	$stmt2 = $connection->prepare($query2);
+	$stmt2->execute();
+	$results2 = $stmt2->get_result();
+
+	$query3 = "SELECT day, date, hour  FROM appointments WHERE appointment_id = $id ";
+	$stmt3 = $connection->prepare($query3);
+	$stmt3->execute();
+	$results3 = $stmt3->get_result();
+	$row3=$results3->fetch_assoc();
+	$appointment_date= $row3['day']." ".$row3['date']." at ".$row3['hour'];
+
+	while($row2 =$results2->fetch_assoc()){
+		$to= $row2['email'];
+		$subject= "Appointment Booked";
+		$message="Dear $row2[first_name], \nPlease check your appointments. A new appointment has been booked by $client_name on  $appointment_date. \n Click on the following link to log in: http://127.0.0.1/ModernArch/Login/index.php \n Modern Architecture ";
+		mail($to, $subject, $message);
+	}
+
+	
 }
 
 ?>
@@ -50,7 +76,7 @@ if(isset($_POST["book_id"])){
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/x-icon" href="../LanPage/assets/logo-small.jpeg" />
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -67,39 +93,52 @@ if(isset($_POST["book_id"])){
 <!--===============================================================================================-->
 
 <style>
-	.book_button{
-		display:flex;
-		border: 2px solid blue ;
-		border-radius: 7px;
-		text-align: center;
-		width: 50%;
-		align-content: center;
-		justify-content: center;
+
+	body{
+		background-color:#212529;
 	}
 
+	#book_button{
+		background-color: lightgrey;
+		width:60%;
+		height: 100%;
+		margin:0px 20px 0px 20px;
+		border-radius: 10px;
+	}	
 
 	.book_text{
 		border: 2px blue solid; 
 		border-radius: 5px;
 	}
 
+	#return_button{
+  		background-color: #ffc800;
+		color: #ffffff ;
+		margin: 10px;
+		width: 10%;
+		height: 5%;
+		border: thick solid 3px rgba(33,37,41,255);
+		border-radius: 10px;
+	}
+}
+
 </style>
 </head>
 <body>
-	
-	<div class="limiter">
-		<div class="container-table100">
+	<button id="return_button" ><a style="color:#fff" href="../LanPage/index.php" target="_self"> Return </a>  </button>
+	<div style="background-color:#212529;" class="limiter">
+		<div style="background-color:#212529;" class="container-table100">
 			<div class="wrap-table100">
 				<div class="table100 ver1 m-b-110">
 					<div class="table100-head">
 						<table>
 							<thead>
 								<tr class="row100 head">
-									<th class="cell100 column1">Day</th>
-									<th class="cell100 column2">Date</th>
-									<th class="cell100 column3">Hours</th>
-									<th class="cell100 column4">Enter your name:</th>
-									<th class="cell100 column5">Book</th>
+									<th style="background-color: #ffc800;"class="cell100 column1">Day</th>
+									<th style="background-color: #ffc800;"class="cell100 column2">Date</th>
+									<th style="background-color: #ffc800;"class="cell100 column3">Hours</th>
+									<th style="background-color: #ffc800;"class="cell100 column4">Enter your name:</th>
+									<th style="background-color: #ffc800;"class="cell100 column5">Book</th>
 									
 								</tr>
 							</thead>
@@ -118,7 +157,7 @@ if(isset($_POST["book_id"])){
 									<td class="cell100 column3"><?php echo $row["hour"] ?></td>
 									<td class="cell100 column4"> <input type="text" name="name" required> </td>
 									<td class="cell100 column6" name="app_id"><input type="hidden" name="app_id" value= <?php echo $row["appointment_id"] ?> ></td>
-									<td class="cell100 column5"> <input type="submit" name = "book_id" value="Book Now"></td>
+									<td class="cell100 column5"> <button name = "book_id" value="Book Now" id="book_button">Book Now</button></td>
 									
 								</tr>
 								</form>

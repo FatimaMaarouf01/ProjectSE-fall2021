@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>Shop Homepage - Start Bootstrap Template</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../LanPage/assets/logo-small.jpeg" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -17,17 +17,17 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Modern Architecture</a>
+                <p class="navbar-brand" >Modern Architecture</p>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a onclick="location.href='../LanPage/index.php'" class="nav-link active" aria-current="page" >Home</a></li>
+                        <li ><a href='../LanPage/index.php' class="btn btn-outline-dark" aria-current="page" >Home</a></li>
                     </ul>
 
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i>Logout</i> <!-- Logout button -->
-                        </button> 
+                    <form class="d-flex">            
+                        <a href="../Login/index.php" target="_self" aria-current="page" >
+                            <i class="btn btn-outline-dark">Log Out</i> <!-- Logout button -->
+                        </a>
                     </form>
                 </div>
             </div>
@@ -36,7 +36,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder" style="color: white;">Admin Page</h1>
+                    <h1 class="display-4 fw-bolder" style="color: #ffc800;">Modern Architecture Admin</h1>
                 </div>
             </div>
         </header>
@@ -47,23 +47,24 @@
 
                     <div class="col mb-5">
                             <div class="card h-100">
+                                <a href="../Admin list of appointments/index.php">
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder" onclick="location.href='../Admin list of appointments/index.php'">Appointments</h5>
                                     </div>
-                                </div>
+                                </div></a>
                             </div>
                         </div>
                     
 
                     <div class="col mb-5">
                             <div class="card h-100">
-                                
+                                <a href="../List of CV/List of CV.php">
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder" onclick="location.href='../List of CV/List of CV.php'">CV List</h5>
                                     </div>
-                                </div>
+                                </div></a>
                             </div>
                         </div>
                     
@@ -71,35 +72,38 @@
                 
                     <div class="col mb-5">
                             <div class="card h-100">
+                                <a href="../List of Project-Admin/List of Projects.php">
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <!-- Product name-->
                                         <h5 class="fw-bolder" onclick="location.href='../List of Project-Admin/List of Projects.php'">Projects</h5>
                                     </div>
-                                </div>
+                                </div></a>
                             </div>
                         </div>
                         
                     
                         <div class="col mb-5">
                             <div class="card h-100">
+                                <a href="../List of User Accounts/List of Accounts.php">
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <!-- Product name-->
                                         <h5 class="fw-bolder" onclick="location.href='../List of User Accounts/List of Accounts.php'">Users</h5>
                                     </div>
-                                </div>
+                                </div></a>
                             </div>
                         </div>
                         
 
                     <div class="col mb-5">
                             <div class="card h-100">
+                                <a href="../List of Feedback/List of Feedback.php">
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder" onclick="location.href='../List of Feedback/List of Feedback.php'">Feedback</h5>
                                     </div>
-                                </div>
+                                </div></a>
                             </div>
                         </div>
                     

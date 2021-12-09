@@ -29,31 +29,35 @@ if(isset($_POST["login"])){
 
 
 		$username_input = $_POST["username"];
-		$password_input = $_POST["pass"]; //add hash('sha256', ) once db is fixed
+		$password_input = hash("sha256", $_POST["pass"]);
 
-		if(($username_input==$username_table) && ($password_input==$password_table)){
+		if($username_input==$username_table){
 
-			if(($position_table==1)){
-				header("Location:../AdminPage/index.php");
-			}
+			if($password_input==$password_table){
+				if(($position_table==1)){
+					header("Location:../AdminPage/index.php");
+				}
 
-			else if(($position_table==2)){
-				header("Location:../List of Projects/List of Projects.php");
-			}
+				else if(($position_table==2)){
+					header("Location:../List of Projects/List of Projects.php");
+				}
 
-			else if(($position_table==3)){
-				header("Location:../List of Projects/List of Projects.php");
-			}	
+				else if(($position_table==3)){
+					header("Location:../List of Projects/List of Projects.php");
+				}
 			
+				else if(($position_table==4)){
+					header("Location:../AdminPage/index.php");
+				}
+			}
+			else if($password_input!=$password_table && $password_input!=null){
+				echo "Incorrect username or password. Please try again.";
+			}
 		}
-
-		else{
-			
-		}
-		
-	}	
+	}		
+}	
 	
-}
+
 
 
 ?>
@@ -63,7 +67,7 @@ if(isset($_POST["login"])){
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../LanPage/assets/logo-small.jpeg" />
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
@@ -104,7 +108,7 @@ if(isset($_POST["login"])){
 					</div>
 
 					<div class="container-login100-form-btn">
-						<input class="login100-form-btn" type="submit" name = "login" value="Log in">
+						<input class="login100-form-btn" type="submit" name = "login" value="Log in" style="background-color: #ffc800;">
 					</div>
 					
 
